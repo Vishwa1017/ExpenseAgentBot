@@ -23,15 +23,16 @@ async def upload_statement(file: UploadFile = File(...)):
             shutil.copyfileobj(file.file, temp_file)
             temp_file_path = temp_file.name
 
-        transactions = process_statement(temp_file_path)
-        validated_transactions = validate_transactions(transactions)
+
+        result = process_statement(temp_file_path)
 
         return {
-            "message": "File processed successfully",
-            "file_name": file.filename,
-            "count": len(validated_transactions),
-            "transactions": validated_transactions
-        }
+    "message": "File processed successfully",
+    "file_name": file.filename,
+    "raw_count": result["raw_count"],
+    "valid_count": result["valid_count"],
+    "transactions": result["transactions"]
+}
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to save file: {str(e)}")
