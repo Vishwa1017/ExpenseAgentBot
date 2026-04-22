@@ -1,0 +1,22 @@
+# Core
+python-dotenv
+pydantic
+
+# Supabase / Database
+supabase
+postgrest
+
+# LangChain + LLM
+langchain
+langchain-community
+langchain-openai
+
+# PDF processing
+pypdf
+PyMuPDF
+
+# Data handling
+pandas
+
+# Optional (better logging / dev)
+rich

@@ -1,0 +1,27 @@
+venv/
+__pycache__/
+*.pyc
+.env
+*.log
+.DS_Store
+
+# Python cache
+*.pyo
+*.pyd
+
+# IDE
+.vscode/
+.idea/
+
+# Temp files
+tmp/
+temp/
+*.tmp
+
+# Uploaded/private data
+data/private/
+data/raw/
+*.pdf
+
+# OS files
+Thumbs.db
