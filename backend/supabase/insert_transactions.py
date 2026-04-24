@@ -19,7 +19,7 @@ def insert_transactions(user_id: int, transactions: list[dict], source_file: str
         rows.append(row)
 
     response = (
-        supabase.table("alltransactions")
+        supabase.table("transactions")
         .upsert(
             rows,
             on_conflict="user_id,transaction_date,description,amount,account_type"

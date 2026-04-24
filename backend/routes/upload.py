@@ -7,6 +7,7 @@ from backend.services.pdf_parser.validator import validate_transactions
 from backend.supabase.insert_transactions import insert_transactions
 
 
+
 router = APIRouter()
 
 @router.post("/upload")
@@ -46,3 +47,4 @@ async def upload_statement(file: UploadFile = File(...)):
     finally:
         if temp_file_path and os.path.exists(temp_file_path):
             os.remove(temp_file_path)
+
