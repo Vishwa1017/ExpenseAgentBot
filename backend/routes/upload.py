@@ -4,6 +4,8 @@ import tempfile
 import os
 from backend.services.pdf_parser.rbc_parser import process_statement
 from backend.services.pdf_parser.validator import validate_transactions
+from backend.supabase.insert_transactions import insert_transactions
+
 
 
 router = APIRouter()
@@ -25,7 +27,12 @@ async def upload_statement(file: UploadFile = File(...)):
 
 
         result = process_statement(temp_file_path)
-
+        transactions = result["transactions"]
+        db_response = insert_transactions(
+    user_id=1,
+    transactions=transactions,
+    source_file=file.filename
+)
         return {
     "message": "File processed successfully",
     "file_name": file.filename,
@@ -40,3 +47,4 @@ async def upload_statement(file: UploadFile = File(...)):
     finally:
         if temp_file_path and os.path.exists(temp_file_path):
             os.remove(temp_file_path)
+
